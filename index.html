@@ -1,99 +1,70 @@
 <!DOCTYPE html>
-<html>
+<html lang="id">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Selamat Ulang Tahun Kevin</title>
   <style>
-    body, html {
-      height: 100%;
+    * {
       margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
 
-    .birthdayimg {
-      background-image: url('https://cdn.pixabay.com/photo/2020/10/17/14/32/birthday-5668424_1280.jpg');
+    html, body {
       height: 100%;
-      background-position: center;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    .intro {
+      background: url('https://cdn.pixabay.com/photo/2020/10/17/14/32/birthday-5668424_1280.jpg') no-repeat center center;
       background-size: cover;
-      background-repeat: no-repeat;
-      position: relative;
-      color: red;
-      font-size: 35px;
-    }
-
-    .topleft {
-      position: absolute;
-      color: yellow;
-      top: 0;
-      left: 12px;
-    }
-
-    .bottomleft {
-      position: absolute;
-      color: red;
-      bottom: 0;
-      left: 18px;
-    }
-
-    .middle {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
       text-align: center;
-      background-color: rgba(255, 255, 255, 0.5);
-      padding: 30px;
-      border-radius: 15px;
+      color: #fff;
+      padding: 20px;
+      animation: fadeIn 2s ease-in-out;
     }
 
-    hr {
-      margin: auto;
-      width: 40%;
+    .intro h1 {
+      font-size: 48px;
+      text-shadow: 2px 2px 5px #000;
+    }
+
+    .intro p {
+      font-size: 24px;
+      margin-top: 10px;
+      text-shadow: 1px 1px 3px #000;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @media (max-width: 600px) {
+      .intro h1 { font-size: 36px; }
+      .intro p { font-size: 18px; }
     }
   </style>
 </head>
 <body>
 
-<div class="birthdayimg">
-  <div class="topleft">
-    <p>Creative C</p>
-  </div>
-  <div class="middle">
-    <h1>Ready for the Surprise?</h1>
-    <hr>
-    <p id="amx" style="font-size:80px"></p>
-  </div>
-  <div class="bottomleft">
-    <p>Created by Cungcung</p>
-  </div>
+<div class="intro">
+  <h1>🎉 Happy Birthday Kevin! 🎉</h1>
+  <p>Siap untuk kejutan?</p>
 </div>
 
 <script>
-  // Ganti tanggal sesuai target ulang tahun
-  var countDownDate = new Date("july 20, 2025 00:00:00").getTime();
-
-  var countdownfunction = setInterval(function () {
-    var now = new Date().getTime();
-    var distance = countDownDate - now;
-
-    var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-    document.getElementById("amx").innerHTML = days + "D " + hours + "H "
-      + minutes + "M " + seconds + "S ";
-
-    if (distance < 0) {
-      clearInterval(countdownfunction);
-      document.getElementById("amx").innerHTML = "HAPPY BIRTHDAY KEVIN";
-      window.location = "https://cungcung.github.io/intro/";
-    }
-  }, 1000);
+  // Redirect otomatis setelah 5 detik
+  setTimeout(function () {
+    window.location.href = "https://cungcung.github.io/kartu-ulang-tahun/";
+  }, 5000);
 </script>
 
 </body>
 </html>
-
-
-
-
-
-
