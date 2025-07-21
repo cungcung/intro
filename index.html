@@ -1,56 +1,62 @@
 <!DOCTYPE html>
 <html>
-<style>
-body, html {
-  height: 100%;
-  margin: 0;
-}
+<head>
+  <style>
+    body, html {
+      height: 100%;
+      margin: 0;
+    }
 
-.birthdayimg {
-  background-image: url('https://cdn.pixabay.com/photo/2018/02/23/21/29/roses-frame-3176667_960_720.jpg');
-  height: 100%;
-  background-position: center;
-  background-size: cover;
-  position: relative;
-  color: red;
-  font-size: 35px;
-}
+    .birthdayimg {
+      background-image: url('https://cdn.pixabay.com/photo/2020/10/17/14/32/birthday-5668424_1280.jpg');
+      height: 100%;
+      background-position: center;
+      background-size: cover;
+      background-repeat: no-repeat;
+      position: relative;
+      color: red;
+      font-size: 35px;
+    }
 
-.topleft {
-  position: absolute;
-  color: yellow;
-  top: 0;
-  left: 12px;
-}
+    .topleft {
+      position: absolute;
+      color: yellow;
+      top: 0;
+      left: 12px;
+    }
 
-.bottomleft {
-  position: absolute;
-  color: red;
-  bottom:0;
-  left: 18px;
-}
+    .bottomleft {
+      position: absolute;
+      color: red;
+      bottom: 0;
+      left: 18px;
+    }
 
-.middle {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
-}
+    .middle {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      background-color: rgba(255, 255, 255, 0.5);
+      padding: 30px;
+      border-radius: 15px;
+    }
 
-hr {
-  margin: auto;
-  width: 40%;
-}
-</style>
-
+    hr {
+      margin: auto;
+      width: 40%;
+    }
+  </style>
+</head>
 <body>
+
 <div class="birthdayimg">
   <div class="topleft">
     <p>Creative C</p>
   </div>
   <div class="middle">
-    <h1>Ready for the Surprise ?</h1>
+    <h1>Ready for the Surprise?</h1>
     <hr>
     <p id="amx" style="font-size:80px"></p>
   </div>
@@ -60,28 +66,27 @@ hr {
 </div>
 
 <script>
-var countDownDate = new Date("Jan 9, 2022 00:00:00").getTime();
+  // Ganti tanggal sesuai target ulang tahun
+  var countDownDate = new Date("July 22, 2025 00:00:00").getTime();
 
-var countdownfunction = setInterval(function() {
+  var countdownfunction = setInterval(function () {
+    var now = new Date().getTime();
+    var distance = countDownDate - now;
 
-  var now = new Date().getTime();
-var distance = countDownDate - now;
+    var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
- var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    document.getElementById("amx").innerHTML = days + "D " + hours + "H "
+      + minutes + "M " + seconds + "S ";
 
-  document.getElementById("amx").innerHTML = days + "D " + hours + "H "
-  + minutes + "M " + seconds + "S ";
-
- if (distance < 0) {
-    clearInterval(countdownfunction);
-    document.getElementById("amx").innerHTML = "HAPPY BIRTHDAY KEVIN";
-    window.location = "https://cungcung.github.io/kartu-ulang-tahun/";
-}
-
-}, 1000);
+    if (distance < 0) {
+      clearInterval(countdownfunction);
+      document.getElementById("amx").innerHTML = "HAPPY BIRTHDAY KEVIN";
+      window.location = "https://cungcung.github.io/kartu-ulang-tahun/";
+    }
+  }, 1000);
 </script>
 
 </body>
