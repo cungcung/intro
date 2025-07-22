@@ -1,69 +1,137 @@
-
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Selamat Ulang Tahun Kevin</title>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
   <style>
-    * {
+    html, body {
       margin: 0;
       padding: 0;
-      box-sizing: border-box;
-    }
-
-    html, body {
       height: 100%;
-      font-family: 'Segoe UI', sans-serif;
+      font-family: 'Pacifico', cursive;
+      overflow: hidden;
     }
 
     .intro {
       background: url('bg.jpg') no-repeat center center;
       background-size: cover;
-      height: 100%;
+      height: 100vh;
+      width: 100vw;
       display: flex;
-      flex-direction: column;
       justify-content: center;
       align-items: center;
+      flex-direction: column;
       text-align: center;
       color: #fff;
-      padding: 20px;
-      animation: fadeIn 2s ease-in-out;
+      padding: 1rem;
+      box-sizing: border-box;
+      text-shadow: 2px 2px 8px #000;
+      animation: fadeIn 2s ease-in;
     }
 
-    .intro h1 {
-      font-size: 48px;
-      text-shadow: 2px 2px 5px #000;
+    h1 {
+      font-size: 8vw;
+      margin-bottom: 20px;
+      animation: pop 1s ease-out forwards;
     }
 
-    .intro p {
-      font-size: 24px;
-      margin-top: 10px;
-      text-shadow: 1px 1px 3px #000;
+    p {
+      font-size: 5vw;
+      animation: slideUp 2s ease-out forwards;
+      max-width: 90%;
     }
 
     @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
+      from {opacity: 0;}
+      to {opacity: 1;}
     }
 
-    @media (max-width: 600px) {
-      .intro h1 { font-size: 36px; }
-      .intro p { font-size: 18px; }
+    @keyframes pop {
+      0% {transform: scale(0);}
+      100% {transform: scale(1);}
+    }
+
+    @keyframes slideUp {
+      from { transform: translateY(50px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      z-index: 10;
     }
   </style>
 </head>
 <body>
 
 <div class="intro">
-  <h1>🎉 Happy Birthday Kevin! 🎉</h1>
-  <p>Siap untuk kejutan?</p>
+  <h1>🎉 Happy Birthday Kevin 🎉</h1>
+  <p>Panjang Umur dan Sehat Selalu Yaa</p>
 </div>
 
+<canvas id="confetti"></canvas>
+
 <script>
+  const canvas = document.getElementById("confetti");
+  const ctx = canvas.getContext("2d");
+  let W = window.innerWidth;
+  let H = window.innerHeight;
+  canvas.width = W;
+  canvas.height = H;
+
+  const particles = [];
+  for (let i = 0; i < 150; i++) {
+    particles.push({
+      x: Math.random() * W,
+      y: Math.random() * H,
+      r: Math.random() * 6 + 4,
+      d: Math.random() * 150,
+      color: `rgb(${~~(Math.random()*255)}, ${~~(Math.random()*255)}, ${~~(Math.random()*255)})`,
+      tilt: Math.floor(Math.random() * 10) - 10,
+      tiltAngleIncremental: (Math.random() * 0.07) + 0.05,
+      tiltAngle: 0
+    });
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, W, H);
+    for (let i = 0; i < particles.length; i++) {
+      const p = particles[i];
+      ctx.beginPath();
+      ctx.lineWidth = p.r;
+      ctx.strokeStyle = p.color;
+      ctx.moveTo(p.x + p.tilt + p.r / 2, p.y);
+      ctx.lineTo(p.x + p.tilt, p.y + p.tilt + p.r / 2);
+      ctx.stroke();
+    }
+    update();
+  }
+
+  function update() {
+    for (let i = 0; i < particles.length; i++) {
+      const p = particles[i];
+      p.tiltAngle += p.tiltAngleIncremental;
+      p.y += (Math.cos(p.d) + 3 + p.r / 2) / 2;
+      p.x += Math.sin(p.d);
+      p.tilt = Math.sin(p.tiltAngle - i / 3) * 15;
+
+      if (p.y > H) {
+        p.y = -10;
+        p.x = Math.random() * W;
+      }
+    }
+  }
+
+  setInterval(draw, 33);
+
   setTimeout(function () {
-    window.location.href = "https://cungcung.github.io/kartu-ulang-tahun/";
-  }, 5000);
+    window.location.href = "https://cungcung.github.io/hbd_kevin/";
+  }, 3000);
 </script>
 
 </body>
